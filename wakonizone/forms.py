@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Post,Business,NeighbourHood
+from .models import Profile,Post,Business,Locality
 
 class UserRegisterForm(UserCreationForm):
 
@@ -33,6 +33,5 @@ class BusinessForm(forms.ModelForm):
 
 class HoodForm(forms.ModelForm):
     class Meta:
-        model = NeighbourHood
+        model = Locality
         exclude = ('admin',)
-        
