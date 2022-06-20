@@ -6,10 +6,6 @@ import datetime as dt
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-# Create your models here.
-
-# NeighbourHood Model
-
 
 class NeighbourHood(models.Model):
     mtaani_name = models.CharField(max_length=50)
