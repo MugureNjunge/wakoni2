@@ -14,4 +14,7 @@ urlpatterns=[
     path('addbusiness/<local_id>', views.createbusiness, name='createbusiness'),
     path('addpost/<local_id>', views.post, name='post'),
 
+    path('police/', views.Police, name='police'),
+    path('health/', views.Health, name='health'),
+
 ]    

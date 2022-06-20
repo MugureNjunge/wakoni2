@@ -155,3 +155,15 @@ def signout(request):
     logout(request) 
 
     return redirect('index')
+
+def Police(request):
+    current_user = request.user
+    if request.method == 'GET':
+
+       return render(request, 'police.html', {"current_user":current_user})
+
+def Health(request):
+    current_user = request.user
+    if request.method == 'GET':
+
+       return render(request, 'health.html', {"current_user":current_user})
