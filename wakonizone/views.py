@@ -59,7 +59,7 @@ def local(request, local_id):
     business = Business.objects.filter(locality_id=local)
     users = Profile.objects.filter(locality=local)
     posts = Post.objects.filter(locality=local)
-    return render(request, 'locality.html', {'postform':postform, 'businessform': businessform, 'users':users,'current_user':current_user, 'mtaani':local,'business':business,'posts':posts})
+    return render(request, 'locality.html', {'postform':postform, 'businessform': businessform, 'users':users,'current_user':current_user, 'local':local,'business':business,'posts':posts})
 
 @login_required
 def add_locality(request):
