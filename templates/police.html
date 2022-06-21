@@ -87,9 +87,9 @@
   </symbol>
 </svg>
 
-<div class=" bg-dark gap-5 m-3">
+<div class=" bg-dark gap-5 m-3 mt-10">
   <ul class="dropdown-menu dropdown-menu-light position-static d-grid gap-1 p-2 rounded-3 mx-0 border-0 shadow w-220px">
-    <h2 class="text-center text-white bg-dark">Gikuni PD</h2>
+    <h2 class="text-center text-white bg-dark mt-5">Police Department Office</h2>
     
     <div class="text-center bg-warning">
       <li>Chief Inspector Boris - 0798 993 036/0704 241 104</li>
@@ -104,16 +104,19 @@
 <div class="b-example-divider"></div>
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col-md-10 mb-5 mt-4">
 
-        <img src="{% static 'images/police1.png' %}" alt="police">
-      </div>
+          <div class="card" id="hoody" style="border-radius:15px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);" height="100% ">
+              <img class="card-img-top img-responsive" src="https://cdn.pixabay.com/photo/2012/04/12/13/52/police-30120_960_720.png" alt="police">
+        </div>
 
-      <div class="col-md-4">
-        <img src="{% static 'images/police2.jpg' %}" alt="police">
+        <!-- <div class="col-md-6 mb-5">
+
+          <div class="card" id="hoody" style="border-radius:15px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);" height="100%">
+              <img class="card-img-top img-responsive" src="https://cdn.pixabay.com/photo/2017/09/04/20/14/usa-2715287_960_720.jpg" alt="police">
+        </div> -->
       </div>
-    </div>
   </div>
 
 {% endblock content %}
