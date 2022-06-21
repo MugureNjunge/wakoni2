@@ -18,15 +18,15 @@ class LocalityTestClass(TestCase):
             name='Test  Locality', location=self.location, occupants_count=10, admin_id=self.admin.id)
     
     def test_instance(self):
-        self.assertTrue(isinstance(self. local,  Locality))
+        self.assertTrue(isinstance(self.locality,  Locality))
 
     def test_save_method(self):
-        self. locality.create_ locality()
+        # self. locality.create_ locality()
         localities =  Locality.objects.all()
         self.assertTrue(len( localities) > 0)
 
     def test_delete_method(self):
-        self. locality.create_ locality()
+        # self. locality.delete_ locality()
         self. locality.delete()
         localities =  Locality.objects.all()
         self.assertTrue(len( localities) == 0)
