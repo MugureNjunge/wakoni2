@@ -24,11 +24,6 @@ class Locality(models.Model):
     def delete_locality(cls, id):
         cls.objects.filter(id=id).delete()
 
-    
-    @classmethod
-    def search_by_name(cls, search_term):
-        hood = cls.objects.filter(name__icontains=search_term)
-        return hood
 
     # find neighbourhood by id
     @classmethod
@@ -91,6 +86,12 @@ class Business(models.Model):
 
     def update_business(self):
         self.update()
+
+    @classmethod
+    def search_by_business_name(cls, search_term):
+      business = cls.objects.filter(name__icontains=search_term)
+      return business
+ 
 
 class Post(models.Model):
     title = models.CharField(max_length=50,blank=True)
