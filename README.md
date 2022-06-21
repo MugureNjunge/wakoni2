@@ -4,52 +4,50 @@
 ## Author: [Maureen Njunge](https://github.com/MugureNjunge)
 
 ## Description
-This application enables a user to connect with other members of his/her neighbourhood.A community memeber is abe to sign up/ in and choose their neighbourhood then get updates on events as well as business updates
+This application enables a user to connect with other members of his/her neighbourhood.A community memeber is abe to sign up/ in and choose their neighbourhood then get updates on events as well as business updates.
 
 
 
 
 ## Technology Used
 
-![](https://img.shields.io/badge/Code-python-informational?style=flat&logo=python&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Code-bootstrap-informational?style=flat&logo=bootstrap&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-django-informational?style=flat&logo=django&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-postgress-informational?style=flat&logo=postgress&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-django-rest-framework-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-HTML5-informational?style=flat&logo=html5&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Code-CSS3-informational?style=flat&logo=css3&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Code-python-informational?style=flat&logo=python&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Code-bootstrap-informational?style=flat&logo=bootstrap&logoColor=white&color=brightgreen)
+
 
 
 ## User Stories
-These are the behaviors/features that the application implements for use by a user.
 
 Users would like to:
 * Sign in with the application to start using.
 * Find Contact Information for the health department and Police authorities near my neighborhood.
 * Create Posts that will be visible to everyone in my neighborhood.
-* Change My neighborhood when I decide to move out.
-* Only view details of a single neighborhood.
+
 
 ## Admin Abilities
 These are the behaviours/features that the application implements for use by the admin.
 
 Admin should:
 * Sign in to the application
-* Add, Edit and Delete hoods,posts,businesses
+* Add, Edit and Delete hoods and posts.
 * Delete hoods,posts,businesses
-* Manage the application.
+* Manage the application images and profiles.
 
 
 ## Specifications
 | Behavior            | Input                         | Output                        | 
 | ------------------- | ----------------------------- | ----------------------------- |
-| User visits the app and gets directed to the home page  | User join mtaa | Directed to the home page | 
-If user has no account, they click on `Register` | User Register  | User is redirected to the profile set up page |
-|Click `Join Hood` |You'll be able to get in to that hood| 
+| User visits the app and gets directed to the home page  | User joins wakonizone | Directed to the home page | 
+If user has no account, they click on `Join locality` | User redirected to 'register'  | User then taps on profile to set up profile page |
+|Click `Join locality` |You'll be able to get in to that hood| 
 | Click `add post` | You'll be able to add a post in that hood| 
 | Click `add business` | You'll be able to add a business in that hood| 
-| Click `leave hood` | You'll be able to leave that hood| 
+| Click `search business` | You'll be able to search business| 
 
 ## SetUp / Installation Requirements
 ## Prerequisites
