@@ -9,7 +9,7 @@ from django.dispatch import receiver
 
 class Locality(models.Model):
     locality_name = models.CharField(max_length=50)
-    description = models.TextField(max_length = 200,null = True)
+    description = models.CharField(max_length = 200,null = True)
     occupants = models.IntegerField(default=0)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -54,7 +54,8 @@ def save_user_profile(sender, instance, **kwargs):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = CloudinaryField('image')
-    bio = models.TextField(max_length=500, blank=True, null=True)
+    fullname = models.CharField(max_length=500, blank=True, null=True)
+    bio = models.CharField(max_length=500, blank=True, null=True)
     phone_number= models.CharField(max_length=50, blank=True, null=True)
     localty = models.ForeignKey(Locality, on_delete=models.CASCADE,null=True)
 
@@ -74,9 +75,9 @@ class Profile(models.Model):
 class Business(models.Model):
     business_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    description = models.TextField(blank=True, null=True)
+    description = models.CharField(max_length = 200,blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    locality = models.ForeignKey(Locality, on_delete=models.CASCADE)
+    # locality = models.ForeignKey(Locality, on_delete=models.CASCADE)
     business_pic = CloudinaryField('image', blank=True, null=True)
     
     def __str__(self):
@@ -94,9 +95,9 @@ class Business(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=50,blank=True)
     post_pic = CloudinaryField('image')
-    description = models.TextField(max_length = 150,null = True)
+    description = models.CharField(max_length = 150,null = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    neighbourhood = models.ForeignKey(Locality, on_delete=models.CASCADE, default=1)
+    # neighbourhood = models.ForeignKey(Locality, on_delete=models.CASCADE, default=1)
     
     def save_post(self):
         self.save()

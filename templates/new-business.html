@@ -16,11 +16,14 @@
 
             <div class="form-group font-size:5px">
               
-              {{ form.as_p }}
+              {{ form|crispy }}
 
-            </div>  
+            </div>
+            <br>
+            <div>
 
             <button class="form-btn text-white bg-dark" type="submit">Submit Business</button>
+            </div>
                       
           </form>
       </div>
