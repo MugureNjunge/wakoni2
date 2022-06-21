@@ -23,7 +23,7 @@ def register(request):
             user = authenticate(username=username, password=password)
             login(request,user)
             messages.success(request, f'Account created for { username }!!')
-            return redirect('locality')
+            return redirect('index')
 
     else:
         form = UserRegisterForm()
@@ -40,7 +40,7 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('locality')
+            return redirect('index')
         
         else:
             messages.success(request,('You information is not valid'))
