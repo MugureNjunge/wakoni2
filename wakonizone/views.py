@@ -61,18 +61,7 @@ def signout(request):
 
 @login_required(login_url='/accounts/sign-in/')
 def local(request):
-    return render(request,"locality.html")
-
-    
-# def local(request, locality_id):
-#     local = Locality.objects.get(locality_id=id)
-#     newpostform = NewPostForm()
-#     newbusinessform = NewBusinessForm()
-#     current_user = request.user
-#     business = Business.objects.filter(locality_id=local)
-#     users = Profile.objects.filter(locality=local)
-#     posts = Post.objects.filter(locality=local)
-#     return render(request, 'locality.html', {'newpostform':newpostform, 'newbusinessform': newbusinessform, 'users':users,'current_user':current_user, 'local':local,'business':business,'posts':posts})         
+    return render(request,"locality.html")       
 
 
 @login_required(login_url='/accounts/sign-in/')
