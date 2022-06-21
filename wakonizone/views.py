@@ -5,12 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import *
 from .forms import UserRegisterForm, ProfileForm, NewBusinessForm, NewPostForm
 from django.contrib.auth.decorators import login_required
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
-
-@login_required(login_url='/accounts/sign-in/')
 def index(request):
     
     return render(request, 'index.html')
