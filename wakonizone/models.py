@@ -88,9 +88,9 @@ class Business(models.Model):
         self.update()
 
     @classmethod
-    def search_by_business_name(cls, search_term):
-      business = cls.objects.filter(name__icontains=search_term)
-      return business
+    def search_by_business(cls, search_term):
+      business_name = cls.objects.filter(business_name__icontains=search_term)
+      return business_name
  
 
 class Post(models.Model):

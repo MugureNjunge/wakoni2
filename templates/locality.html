@@ -84,25 +84,10 @@
     <!-- <div class="b-example-divider b-example-vr"></div> -->
 
     <!-- end side bar -->
-
-    <div class="row">
-        {% for business in business %}
-      <div class="col-md-4 mb-5">
-
-        <div class="card" id="hoody" style="border-radius:15px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);">
-            <img class="card-img-top img-responsive" src="{{business.business_pic.url}}" alt="Card image cap" height="200px;" width="300px;" />
-            <div class="card-body">
-
-                <p><strong>{{business.business_name}}</strong> {{business.description}}</p>
-
-            </div>
-          </div>
-
-        {% endfor %}
-      </div>
+      
 
         {% for post in posts %}
-      <div class="col-md-4 mb-5">
+      <div class="card col-md-4 mb-5">
 
         <div class="card" id="hoody" style="border-radius:15px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);">
             <img class="card-img-top img-responsive" src="{{post.post_pic.url}}" alt="Card image cap" height="200px;" width="300px;" />
@@ -114,7 +99,7 @@
         </div>
 
         {% endfor %}
-       </div>  
+      </div>  
     </div>
 
   </div>

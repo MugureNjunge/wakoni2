@@ -128,7 +128,7 @@ def NewBusiness(request):
 def search(request):
     if 'title' in request.GET and request.GET["title"]:
         search_term = request.GET.get("title")
-        searched_business = Business.search_by_businesses(search_term)
+        searched_business = Business.search_by_business(search_term)
         message = search_term
 
         return render(request,'search.html',{"message":message,
