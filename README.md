@@ -59,8 +59,8 @@ If user has no account, they click on `Join locality` | User redirected to 'regi
 ### Cloning
 * In your terminal:
 
-        $ git clone https://github.com/gladys-gg/neighborhood.git
-        $ cd mtaani
+        $ git clone https://github.com/MugureNjunge/wakoni2
+        $ cd wakoni
 
 ## Running the Application
 * Creating the virtual environment
@@ -83,10 +83,10 @@ If user has no account, they click on `Join locality` | User redirected to 'regi
         $ python3 manage.py test
 
 This application is developed using: 
-[Python3](https://www.python.org/doc/), 
-[Django](https://www.djangoproject.com/), 
-[HTML](https://getbootstrap.com/) 
-[Bootstrap](https://getbootstrap.com/)
+[Python3],
+[Django],
+[HTML],
+[Bootstrap](
 
 ## License
 
