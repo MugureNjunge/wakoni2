@@ -1,140 +1,26 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404, render,redirect
-from .models import Business, Locality, Post, Profile
-from django.contrib.auth.decorators import login_required
-from .forms import *
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from .models import *
+from .forms import UserRegisterForm, ProfileForm, NewBusinessForm, NewPostForm
+from django.contrib.auth.decorators import login_required
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
+@login_required(login_url='/accounts/sign-in/')
 def index(request):
-    local = Locality.objects.all()
-    return render(request, 'index.html',{'local':local})
-
-def profile(request):
-#Get the profile
-    current_user=request.user
-    profile = Profile.objects.filter(id=current_user.id).first()
-    if request.method == 'POST':
-        profileform = UpdateProfileForm(request.POST,request.FILES,instance=profile)
-        if  profileform.is_valid:
-            profileform.save(commit=False)
-            profileform.user=request.user
-            profileform.save()
-            return redirect('profile')
-    else:
-        form=UpdateProfileForm()
-    return render(request,'profile.html',{'form':form})
-
-def EditProfile(request):
-    user = request.user.id
-    profile = Profile.objects.get(user_id=user)
-
-    if request.method == "POST":
-        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            profile.profile_pic = form.cleaned_data.get('profile_pic')
-            profile.fullname = form.cleaned_data.get('fullname')
-            profile.location = form.cleaned_data.get('location')
-            profile.url = form.cleaned_data.get('url')
-            profile.bio = form.cleaned_data.get('bio')
-            profile.save()
-            return redirect('profile', profile.user.username)
-    else:
-        form = UpdateProfileForm(instance=request.user.profile)
-
-    context = {
-        'form':form,
-    }
-    return render(request, 'editprofile.html', context)
-
-
-@login_required
-def local(request, local_id):
-    local = Locality.objects.get(id=local_id)
-    postform = PostForm()
-    businessform = BusinessForm()
-    current_user = request.user
-    business = Business.objects.filter(locality_id=local)
-    users = Profile.objects.filter(locality=local)
-    posts = Post.objects.filter(locality=local)
-    return render(request, 'locality.html', {'postform':postform, 'businessform': businessform, 'users':users,'current_user':current_user, 'local':local,'business':business,'posts':posts})
-
-@login_required
-def add_locality(request):
-    if request.method == 'POST':
-        hoodform = HoodForm(request.POST, request.FILES)
-        if hoodform.is_valid():
-            upload = hoodform.save(commit=False)
-            upload.profile = request.user.profile
-            upload.save()
-            return redirect('index')
-    else:
-        hoodform = HoodForm()
-    return render(request,'addlocality.html',locals())
-
-@login_required
-def join_hood(request, local_id):
-    local = get_object_or_404(Locality, id=local_id)
-    request.user.profile.locality = local
-    request.user.profile.save()
-    return redirect('locality', local_id = local.id)
-
-@login_required
-def leave_hood(request, local_id):
-    local = get_object_or_404(Locality, id=local_id)
-    request.user.profile.locality = None
-    request.user.profile.save()
-    return redirect('index')
-
-
-def createbusiness(request,local_id):
-    local = Locality.objects.get(id=local_id)
-    if request.method == 'POST':
-        businessform = BusinessForm(request.POST, request.FILES)
-        if businessform.is_valid():
-            business = businessform.save(commit=False)
-            business.locality = local
-            business.user = request.user
-            business.save()
-        return redirect('locality', local_id=local.id)
-    else:
-        businessform = BusinessForm()
-    return render(request,'addbusiness.html',locals())
-
-def post(request,local_id):
-    mtaani = Locality.objects.get(id=local_id)
-    if request.method == 'POST':
-        postform = PostForm(request.POST, request.FILES)
-        if postform.is_valid(): 
-            post = postform.save(commit=False)
-            post.locality = local
-            post.user = request.user
-            post.save()
-        return redirect('locality', local_id=mtaani.id)
-    else:
-        postform = PostForm()
-    return render(request,'addpost.html',locals())
-
-
-def search_hood(request):
-
-    if 'name' in request.GET and request.GET["name"]:
-        search_term = request.GET.get("name")
-        searched_hoods = Locality.search_by_name(search_term)
-        print(searched_hoods)
-        message = f"{search_term}"
-
-        return render(request, 'search.html',{"message":message,"hoods": searched_hoods})
     
+    return render(request, 'index.html')
+
 def register(request):
+    
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-
-            # Profile.get_or_create(user=request.user)
             
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
@@ -149,12 +35,84 @@ def register(request):
     context = {
         'form': form,
     }
-    return render(request, 'sign-up.html', context)
+    return render(request, 'sign-up.html', context)   
+
+def signin(request):
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        
+        else:
+            messages.success(request,('You information is not valid'))
+            return redirect('sign-in')
+
+    else:
+        return render(request,'sign-in.html')
 
 def signout(request):  
     logout(request) 
 
-    return redirect('index')
+    return redirect('sign-in') 
+
+@login_required(login_url='/accounts/sign-in/')
+def local(request):
+    return render(request,"locality.html")
+
+    
+# def local(request, locality_id):
+#     local = Locality.objects.get(locality_id=id)
+#     newpostform = NewPostForm()
+#     newbusinessform = NewBusinessForm()
+#     current_user = request.user
+#     business = Business.objects.filter(locality_id=local)
+#     users = Profile.objects.filter(locality=local)
+#     posts = Post.objects.filter(locality=local)
+#     return render(request, 'locality.html', {'newpostform':newpostform, 'newbusinessform': newbusinessform, 'users':users,'current_user':current_user, 'local':local,'business':business,'posts':posts})         
+
+
+@login_required(login_url='/accounts/sign-in/')
+def UserProfile(request, username):
+   
+    Profile.objects.get_or_create(user=request.user)
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+
+    context = {
+        
+        'profile':profile,
+        
+    }
+    return render(request, 'profile.html', context)
+
+@login_required(login_url='/accounts/sign-in/')
+def EditProfile(request):
+    
+    user = request.user.id
+    # current_user=request.user
+    profile = Profile.objects.get(user_id=user)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            # profile.user = current_user
+            profile.profile_pic = form.cleaned_data.get('profile_pic')
+            profile.fullname = form.cleaned_data.get('fullname')
+            profile.locality = form.cleaned_data.get('locality')
+            profile.bio = form.cleaned_data.get('bio')
+            profile.save()
+            return redirect('profile', profile.user.username)
+    else:
+        form = ProfileForm(instance=request.user.profile)
+
+    context = {
+        'form':form,
+    }
+    return render(request, 'editprofile.html', context) 
 
 def Police(request):
     current_user = request.user
@@ -167,3 +125,47 @@ def Health(request):
     if request.method == 'GET':
 
        return render(request, 'health.html', {"current_user":current_user})
+
+@login_required(login_url='/accounts/sign-in/')
+def NewBusiness(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewBusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = current_user
+            business.save()
+        return redirect('index')
+        
+    else:
+        form = NewBusinessForm()
+    return render(request, 'new-business.html', {"form":form, "current_user":current_user})
+
+def search(request):
+    if 'title' in request.GET and request.GET["title"]:
+        search_term = request.GET.get("title")
+        searched_business = Business.search_by_businesses(search_term)
+        message = search_term
+
+        return render(request,'search.html',{"message":message,
+                                             "searched_business":searched_business})
+    else:
+        message = "You haven't searched for any business"
+        return render(request,'search.html',{"message":message})   
+
+@login_required(login_url='/accounts/sign-in/')
+def NewPost(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+        return redirect('index')
+        
+    else:
+        form = NewPostForm()
+    return render(request, 'newpost.html', {"form":form, "current_user":current_user})           
+
+

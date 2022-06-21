@@ -16,17 +16,17 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-class UpdateProfileForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user']
         
-class PostForm(forms.ModelForm):
+class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'description','post_pic')
 
-class BusinessForm(forms.ModelForm):
+class NewBusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         fields = ('business_name','description','business_pic')

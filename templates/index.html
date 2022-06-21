@@ -188,21 +188,6 @@
 
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      
-      <!-- <li>
-        <a href="{% url 'health' %}" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-          Health Department
-        </a>
-      </li>
-      
-      <li>
-        <a href="{% url 'police' %}" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          Police Department
-        </a>
-        
-      </li> -->
 
       <li>
         <a href="{% url 'profile' request.user %}" class="nav-link text-white">          
@@ -212,80 +197,56 @@
       </li>
 
       <li>   
-        {% for local in local %}
-        <a href="{% url 'locality' locality.id %}" class="nav-link text-white">          
+        
+        <a href="{% url 'locality' %}" class="nav-link text-white">          
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Join Gikuni Locality
         </a> 
 
-        <a href="{% url 'locality' locality.id %}" class="nav-link text-white">          
+        <a href="{% url 'locality' %}" class="nav-link text-white">          
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Join Marugu Locality
         </a> 
-       {% endfor %}
-      </li>
-
-          
-      
-
-      <li> 
-        <br>        
-      
-        <h6>Resources</h6>
-        <ul class="list-unstyled text-small">
-          <li class="nav-item me-3 me-lg-0">
-            <a class="link-secondary" href="{% url 'profile_api' %}">
-                Profile API
-            </a>
-          </li>
-
-          <li class="nav-item me-3 me-lg-0">
-            <a class="link-secondary" href="{% url 'locality_api' %}">
-                Locality API
-            </a>
-          </li>
-
-          <li><a class="link-secondary" href="#"></a></li>
-          <li><a class="link-secondary" href="#"></a></li>
-        </ul>
-      
-      </li>    
-
+    
+      </li>  
+     
     </ul>
-    <hr>
-  </div>
 
+  </div>   
   
+  <hr>  
 
     <!-- end of sidebar -->
     
     <!-- index page body -->
 
-  <div class="position-relative overflow-hidden p-3 p-md-3 m-md-3 text-center bg-light">
-  
-    <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-  </div>
-  
-  <div class="index">
-    <div class="heading bg-black text-white">
+  <div>
     
-      <h5 class="text-center mt-2 mb-2">Karibu Wakoni Zone,<br>
-        <a href="{% url 'sign-up' %}">Sign Up!</a> and join either of the two neighbourhoods in this zone!</h5>
-      <hr>
-    
-    </div>  
-    
-    <div class="video">  
-      <iframe id="vp1uZsp0" title="Video Player" width="640" height="360" frameborder="0" src="https://s3.amazonaws.com/embed.animoto.com/play.html?w=swf/production/vp1&e=1655574745&f=uZsp06tP3bg2f0Cs06cUyA&d=0&m=p&r=360p&volume=100&start_res=720p&i=m&asset_domain=s3-p.animoto.com&animoto_domain=animoto.com&options=" allowfullscreen></iframe>
-
+      <div class="index">
+        <div class="heading bg-black text-white">
         
-    </div>
-  </div>
-  <hr>
-  
+          <h5 class="text-center mt-2 mb-2">Karibu Wakoni Zone,<br>
+            <a href="{% url 'sign-up' %}">Sign Up!</a> and join either of the two neighbourhoods in this zone!</h5>
+          <hr>
+        
+        </div>  
+
+        <div class="position-relative overflow-hidden p-3 p-md-3 m-md-3 text-center bg-light">
+      
+          <div class="product-device shadow-sm d-none d-md-block"></div>
+          
+      </div>       
+        
+        <div class="video">  
+          <iframe id="vp1uZsp0" title="Video Player" width="640" height="360" frameborder="0" src="https://s3.amazonaws.com/embed.animoto.com/play.html?w=swf/production/vp1&e=1655574745&f=uZsp06tP3bg2f0Cs06cUyA&d=0&m=p&r=360p&volume=100&start_res=720p&i=m&asset_domain=s3-p.animoto.com&animoto_domain=animoto.com&options=" allowfullscreen></iframe>
+
+            
+        </div>
+      </div>
+      <hr>
+  </div>    
 </main>     
-  <!-- footer -->
+  
 
   
 

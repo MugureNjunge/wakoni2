@@ -13,27 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-
 from django.contrib import admin
-from django.urls import path,include
-from django.contrib.auth import views
-from wakonizone import views
-from django.contrib.auth import views as auth_views
-from wakonizone.views import profile
+from django.urls import path, include
+from wakonizone.views import UserProfile
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('wakonizone.urls')),
     path('admin/', admin.site.urls),
-
-
-    path('sign-up/',views.register,name='sign-up'),
-    path('login/',auth_views.LoginView.as_view(template_name = 'sign-in.html'),name='sign-in'),
-    path('sign-out/', views.signout, name='sign-out'),
-    path('user/', profile, name='profile'),
-    # path('<username>/', UserProfile, name='profile'),
+    path('', include('wakonizone.urls')),
+    path('<username>/',UserProfile, name='profile'),
+    
+    
 ]
-    
-    
-
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
