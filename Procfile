@@ -1,0 +1,1 @@
+web: gunicorn wakoni.wsgi --log-file -
