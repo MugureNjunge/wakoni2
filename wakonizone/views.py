@@ -124,7 +124,7 @@ def NewBusiness(request):
             business = form.save(commit=False)
             business.user = current_user
             business.save()
-        return redirect('index')
+        return redirect('locality')
         
     else:
         form = NewBusinessForm()
@@ -151,7 +151,7 @@ def NewPost(request):
             post = form.save(commit=False)
             post.user = current_user
             post.save()
-        return redirect('index')
+        return redirect('locality')
         
     else:
         form = NewPostForm()
